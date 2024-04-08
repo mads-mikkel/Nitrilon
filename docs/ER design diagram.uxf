@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>13</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>234</x>
+      <y>195</y>
+      <w>260</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>Events
+--
+EventId : int {PK}
+Date : date {M}
+Name : nvarchar(128) {M}
+Attendees : int = -1
+Description : ntext = 'Dette event har endnu ingen beskrivelse'
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>975</x>
+      <y>195</y>
+      <w>130</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>Ratings</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>481</x>
+      <y>182</y>
+      <w>234</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=*
+m2=1
+</panel_attributes>
+    <additional_attributes>10.0;20.0;160.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>689</x>
+      <y>195</y>
+      <w>130</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>EventRatings</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>806</x>
+      <y>182</y>
+      <w>195</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*
+</panel_attributes>
+    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>234</x>
+      <y>13</y>
+      <w>338</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>Mandatory columns are with {M}
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
