@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 
+using Nitrilon.Entities;
+
 namespace Nitrilon.Api.Controllers
 {
     [ApiController]
