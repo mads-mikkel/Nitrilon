@@ -32,15 +32,5 @@ namespace Nitrilon.Api.Controllers
             .ToArray();
         }
 
-        [HttpGet(Name = "GetDemoWeatherForecast")]
-        public WeatherForecast GetDemo() 
-        {
-            WeatherForecast w = new WeatherForecast()
-            {
-                TemperatureC = 20
-            };
-
-            return w;
-        }
     }
 }
