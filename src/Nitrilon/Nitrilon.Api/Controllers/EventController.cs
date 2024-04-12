@@ -54,7 +54,7 @@ namespace Nitrilon.Api.Controllers
             {
                 Repository r = new();
                 int createdId = r.Save(newEvent);
-                return Ok();
+                return Ok(createdId);
             }
             catch(Exception e)
             {
