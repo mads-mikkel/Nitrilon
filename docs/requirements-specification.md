@@ -10,6 +10,7 @@ Aktører:
 * System: Den tablet og webpage som gæsten interagerer med. 
 * Gæst: En person til Nitricon event.
 * Eventansvarlig: den der skal have vist oversigterne over gæsternes bedømmelse.
+* Frivillig klargøringsansvalig: den der klargører devicet til at gæsterne kan rate eventet.
 
 01: En gæst skal kunne bedømme oplevelsen af et event, med valg af én værdi på en skala med tre niveauer.
 
