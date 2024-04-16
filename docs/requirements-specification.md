@@ -10,7 +10,7 @@ Aktører:
 * System: Den tablet og webpage som gæsten interagerer med. 
 * Gæst: En person til Nitricon event.
 * Eventansvarlig: den der skal have vist oversigterne over gæsternes bedømmelse.
-* Frivillig klargøringsansvalig: den der klargører devicet til at gæsterne kan rate eventet.
+* Klargøringsansvalig: den der klargører devicet til at gæsterne kan rate eventet.
 
 01: En gæst skal kunne bedømme oplevelsen af et event, med valg af én værdi på en skala med tre niveauer.
 
@@ -19,6 +19,12 @@ Aktører:
 03: Systemet skal automatisk klargøre til næste indtastning, efter en indtastning.
 
 04: Den eventansvarlige skal kunne vælge et event for at få vist antallet af bedømmelser i hver bedømmelsesniveau.
+
+05: Den klargøringsansvarlige skal få vist de events der kan vælges, når devicet skal klargøres til brug.
+
+06: De events der skal vises til den klargøringsansvarlige, er igangværende og fremtidige events.
+
+07: Når den klargøringsansvarlige har valgt et event, skal systemet viderestille til bedømmelsessiden.
 
 ## Ikke-funktionelle krav
 # IKKE_FUNKTIONELLE KRAV
