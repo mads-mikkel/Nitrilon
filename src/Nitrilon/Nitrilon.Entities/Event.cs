@@ -9,16 +9,18 @@
         private DateTime date;
         private int attendees;
         private string description;
+        private List<Rating> ratings;
         #endregion
 
         #region Constructors
-        public Event(int id, string name, DateTime date, int attendees, string description)
+        public Event(int id, string name, DateTime date, int attendees, string description, List<Rating> ratings)
         {
             Id = id;
             Name = name;
             Date = date;
             Attendees = attendees;
             Description = description;
+            this.ratings = ratings ?? throw new ArgumentNullException(nameof(ratings));
         }
         #endregion
 
@@ -85,7 +87,7 @@
                     description = value;
                 }
             }
-        } 
+        }
         #endregion
     }
 }
