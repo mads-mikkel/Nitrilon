@@ -89,5 +89,44 @@
             }
         }
         #endregion
+
+        #region Methods
+        /// <summary>
+        /// Adds a rating the this event.
+        /// </summary>
+        /// <param name="rating">The rating to add to this event.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the provided rating is null.</exception>
+        public void Add(Rating rating)
+        {
+            if(rating == null)
+            {
+                throw new ArgumentNullException(nameof(rating));
+            }
+            ratings.Add(rating);
+        }
+
+        /// <summary>
+        /// Gets the average rating value of the ratings for this event.
+        /// </summary>
+        /// <returns>The average rating value. When there are no ratings for this event, the value -1.0 is returned.</returns>
+        public double GetRatingAverage()
+        {
+            if(ratings.Count > 0)
+            {
+                double average = 0.0;
+                int sum = 0;
+                foreach(Rating rating in ratings)
+                {
+                    sum += rating.RatingValue;
+                }
+                average = (double)sum / (double)ratings.Count;
+                return average;
+            }
+            else
+            {
+                return -1.0;
+            }
+        }
+        #endregion
     }
 }
