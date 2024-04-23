@@ -2,6 +2,8 @@
 
 using Nitrilon.Entities;
 
+using System.Data;
+
 namespace Nitrilon.DataAccess
 {
     public class Repository
@@ -112,6 +114,39 @@ namespace Nitrilon.DataAccess
             connection.Close();
 
             return newId;
+        }
+
+        public (int, int, int) GetRatingsFor(Event ev)
+        {
+            // 1: make a SqlConnection object:
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // 2: make a SqlCommand object:
+            SqlCommand command = new SqlCommand("CountAllowedRatingsForEvent", connection);
+
+            connection.Open();
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@EventId", ev.Id);
+            int ratingId1Count = 0, ratingId2Count = 0, ratingId3Count = 0;
+            using(SqlDataReader reader = command.ExecuteReader())
+            {
+                if(reader.Read())
+                {
+                    ratingId1Count = Convert.ToInt32(reader["RatingId1Count"]);
+                    ratingId2Count = Convert.ToInt32(reader["RatingId2Count"]);
+                    ratingId3Count = Convert.ToInt32(reader["RatingId3Count"]);
+
+                    Console.WriteLine($"RatingId 1 count: {ratingId1Count}");
+                    Console.WriteLine($"RatingId 2 count: {ratingId2Count}");
+                    Console.WriteLine($"RatingId 3 count: {ratingId3Count}");
+                }
+                else
+                {
+                    Console.WriteLine("No data found for the specified EventId.");
+                }
+            }
+
+            return (ratingId1Count, ratingId2Count, ratingId3Count);
         }
     }
 }

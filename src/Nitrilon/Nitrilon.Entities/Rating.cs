@@ -23,4 +23,11 @@ namespace Nitrilon.Entities
         public int RatingValue { get => ratingValue; set => ratingValue = value; }
         public string Description { get => description; set => description = value; }
     }
+
+    public enum RatingEnum
+    {
+        Good = 1,
+        Neutral = 2,
+        Bad = 3
+    }
 }

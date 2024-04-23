@@ -9,7 +9,7 @@
         private DateTime date;
         private int attendees;
         private string description;
-        private List<Rating> ratings;
+        private List<int> ratings;
         #endregion
 
         #region Constructors
