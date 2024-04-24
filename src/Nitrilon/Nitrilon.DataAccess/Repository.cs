@@ -14,7 +14,7 @@ namespace Nitrilon.DataAccess
         {
             List<Event> events = new List<Event>();
 
-            string sql = "SELECT * FROM Events";
+            string sql = $"SELECT * FROM Events;";
 
             // 1: make a SqlConnection object:
             SqlConnection connection = new SqlConnection(connectionString);
@@ -38,7 +38,7 @@ namespace Nitrilon.DataAccess
                 int attendees = Convert.ToInt32(reader["Attendees"]);
                 string description = Convert.ToString(reader["Description"]);
 
-                Event e = new(id, name, date, attendees, description, new());
+                Event e = new(id, name, date, attendees, description);
 
                 events.Add(e);
             }
@@ -47,6 +47,41 @@ namespace Nitrilon.DataAccess
             connection.Close();
 
             return events;
+        }
+
+        public EventRatingData GetEventRatingDataBy(int eventId)
+        {
+            int badRatingCount = 0;
+            int neutralRatingCount = 0;
+            int goodRatingCount = 0;
+            EventRatingData eventRatingData = default;
+
+            string sql = $"EXEC CountAllowedRatingsForEvent @EventId = {eventId}";
+
+            // 1: make a SqlConnection object:
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // 2: make a SqlCommand object:
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            // TODO: try catchify this:
+            // 3. Open the connection:
+            connection.Open();
+
+            // 4. Execute query:
+            SqlDataReader reader = command.ExecuteReader();
+
+            // 5. Retrieve data from the data reader:
+            while(reader.Read())
+            {
+                badRatingCount = Convert.ToInt32(reader["RatingId1Count"]);
+                neutralRatingCount = Convert.ToInt32(reader["RatingId2Count"]);
+                goodRatingCount = Convert.ToInt32(reader["RatingId3Count"]);
+                eventRatingData = new(badRatingCount, neutralRatingCount, goodRatingCount);
+            }
+            connection.Close();
+
+            return eventRatingData;
         }
 
         public int Save(Event newEvent)

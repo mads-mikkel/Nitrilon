@@ -23,5 +23,15 @@ namespace Nitrilon.Api.Controllers
                 return StatusCode(500);
             }
         }
+
+
+
+        [HttpGet]
+        public ActionResult<EventRatingData> GetEventRatingDataFor(int eventId)
+        {
+            Repository repository = new();
+            EventRatingData eventRatingData = repository.GetEventRatingDataBy(eventId);
+            return Ok(eventRatingData);
+        }
     }
 }
