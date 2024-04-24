@@ -38,14 +38,7 @@ namespace Nitrilon.DataAccess
                 int attendees = Convert.ToInt32(reader["Attendees"]);
                 string description = Convert.ToString(reader["Description"]);
 
-                Event e = new()
-                {
-                    Id = id,
-                    Date = date,
-                    Name = name,
-                    Attendees = attendees,
-                    Description = description,
-                };
+                Event e = new(id, name, date, attendees, description, new());
 
                 events.Add(e);
             }
