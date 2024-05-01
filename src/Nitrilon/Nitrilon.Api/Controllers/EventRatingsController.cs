@@ -24,8 +24,6 @@ namespace Nitrilon.Api.Controllers
             }
         }
 
-
-
         [HttpGet]
         public ActionResult<EventRatingData> GetEventRatingDataFor(int eventId)
         {
