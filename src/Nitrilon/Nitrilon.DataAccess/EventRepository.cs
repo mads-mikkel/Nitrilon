@@ -7,7 +7,7 @@ using System.Data;
 namespace Nitrilon.DataAccess
 {
 
-    public class EventRepository : Repository
+    public class EventRepository: Repository
     {
         public EventRepository() : base() { }
 
@@ -17,20 +17,10 @@ namespace Nitrilon.DataAccess
 
             string sql = $"SELECT * FROM Events;";
 
-            // 1: make a SqlConnection object:
-            SqlConnection connection = new SqlConnection(connectionString);
+            // Execute query:
+            SqlDataReader reader = Execute(sql);
 
-            // 2: make a SqlCommand object:
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            // TODO: try catchify this:
-            // 3. Open the connection:
-            connection.Open();
-
-            // 4. Execute query:
-            SqlDataReader reader = command.ExecuteReader();
-
-            // 5. Retrieve data from the data reader:
+            // Retrieve data from the data reader:
             while(reader.Read())
             {
                 int id = Convert.ToInt32(reader["EventId"]);
@@ -44,9 +34,7 @@ namespace Nitrilon.DataAccess
                 events.Add(e);
             }
 
-            // 6. Close the connection when it is not needed anymore:
-            connection.Close();
-
+            CloseConnection();
             return events;
         }
 
