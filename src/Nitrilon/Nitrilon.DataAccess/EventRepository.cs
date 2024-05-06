@@ -47,18 +47,7 @@ namespace Nitrilon.DataAccess
 
             string sql = $"EXEC CountAllowedRatingsForEvent @EventId = {eventId}";
 
-            // 1: make a SqlConnection object:
-            SqlConnection connection = new SqlConnection(connectionString);
-
-            // 2: make a SqlCommand object:
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            // TODO: try catchify this:
-            // 3. Open the connection:
-            connection.Open();
-
-            // 4. Execute query:
-            SqlDataReader reader = command.ExecuteReader();
+            SqlDataReader reader = Execute(sql);
 
             // 5. Retrieve data from the data reader:
             while(reader.Read())
@@ -68,7 +57,8 @@ namespace Nitrilon.DataAccess
                 goodRatingCount = Convert.ToInt32(reader["RatingId3Count"]);
                 eventRatingData = new(badRatingCount, neutralRatingCount, goodRatingCount);
             }
-            connection.Close();
+
+            CloseConnection();
 
             return eventRatingData;
         }
@@ -81,24 +71,14 @@ namespace Nitrilon.DataAccess
             // Don't forget to format a date as 'yyyy-MM-dd'
             string sql = $"INSERT INTO Events (Date, Name, Attendees, Description) VALUES ('{newEvent.Date.ToString("yyyy-MM-dd")}', '{newEvent.Name}', {newEvent.Attendees}, '{newEvent.Description}'); SELECT SCOPE_IDENTITY();";
 
-            // 1: make a SqlConnection object:
-            SqlConnection connection = new SqlConnection(connectionString);
-
-            // 2: make a SqlCommand object:
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            // 3. Open the connection:
-            connection.Open();
-
-            // 4. Execute the insert command and get the newly created id for the row:
-            SqlDataReader sqlDataReader = command.ExecuteReader();
+            
+            SqlDataReader sqlDataReader = Execute(sql);
             while(sqlDataReader.Read())
             {
                 newId = (int)sqlDataReader.GetDecimal(0);
             }
 
-            // 5. Close the connection when it is not needed anymore:
-            connection.Close();
+            CloseConnection();
 
             return newId;
         }
